@@ -1,0 +1,45 @@
+
+<br>
+
+<h2>Prijava administratora</h2>
+
+<form id="prijava">
+	<p> Username </p>
+	<input type="text" class="username"><br>
+	<p> Password </p>
+	<input type="text", class="password"><br><br>
+	<input type="submit" class="ok1" value="Prijava"><br>
+	<br>
+</form>
+
+<%= link_to 'Nazad na listu projekta', projects_path %>
+
+
+<script type="text/javascript">
+	$('#prijava').submit(function() {
+    	username = $('.username').val();
+    	password = $('.password').val();
+
+    	$.ajax({
+            url: '/admins/checkUser',
+            data: { 
+              username: username,
+              password: password,
+            },
+            type: 'POST',
+            success: function(result) {
+              if (result.status) {
+              	alert(result.status);
+              	$('.username').val("");
+              	$('.password').val("");
+              }
+            }
+        });
+	});
+</script>
+
+
+
+
+
+
