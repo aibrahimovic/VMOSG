@@ -12,10 +12,14 @@
 </head>
 <body>
 <br><br>
+<br><br><br><br>
 <div class="container">
-  <h2>Informacije o udruženjima</h2>
+  <h3>Udruženja</h3>
+  <div align="right">
+        <%= link_to 'Kreiraj novo udruženje', new_member_path, class: "btn btn-info", style: 'color: white; width:300px;'%>
+    </div>
+<br><br>
 
-<br>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -23,7 +27,7 @@
       <th>Opis udruženja</th>
       <th>Web stranica</th>
       <th>Telefon</th>
-      <th>Image</th>
+      <th>Slika</th>
       <th colspan="5"></th>
     </tr>
   </thead>
@@ -35,7 +39,11 @@
         <td><%= member.description %></td>
         <td><%= member.web %></td>
         <td><%= member.phone %></td>
-        <td><%= member.image %></td>
+        <% if !member.avatar.nil? %>
+          <td><%= image_tag member.avatar.url(:thumb) %></td>
+        <% else %>
+          <td></td>
+        <% end %> 
         <td><%= link_to 'Izmjena', edit_member_path(member) %></td>
         <td><%= link_to 'Brisanje', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -44,8 +52,5 @@
 </table>
 
 
-<%= link_to 'Kreiraj novo udruženje', new_member_path, class: "btn btn-info", style: 'color: white;' %><br><br>
-<br>
-<%= link_to 'Nazad na admin stranicu', admin_main_path, class: "btn btn-default" %>
-<%= link_to 'Nazad na web stranicu', statics_home_path, class: "btn btn-default" %><br><br>
+
 

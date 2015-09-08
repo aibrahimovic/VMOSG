@@ -11,10 +11,11 @@ class StaticsController < ApplicationController
 
 
   def home
+    @admin = nil
+    session[:admin_id] = nil
   	@projects = Project.all
   	@neparni = []
   	@parni = []
-
   	res = @projects.sort_by do |item|
   	    item[:end]
   	end 
@@ -27,7 +28,7 @@ class StaticsController < ApplicationController
 
     @main = Info.first
     @members = Member.all
-
+    @news = News.all
 
   end
 end

@@ -8,11 +8,48 @@
 </head>
 <body>
 
+<% if !@admin.nil? %>
+	
+
+	<nav class="navbar navbar-fixed-top navbar-default" role="navigation">
+	  <div class="container">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsable">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a href="#" class="navbar-brand">Administratorska stranica</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="navbar-collapsable">
+	      <ul class="nav navbar-nav foo" id="menu" style="padding-left: 100px;">
+	        <li class="infos"><a href="/infos">O nama</a></li>
+	        <li><a href="/news" class="news">Vijesti</a></li>
+	        <li class="members"><a href="/members">Udruženja</a></li>
+	        <li class="projects"><a href="/projects">Projekti</a></li>
+
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right" align="right">
+	        <li><a href="/">Web stranica</a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+<% end %>
+
 <%= yield %>
 
 </body>
 </html>
 
+<script type="text/javascript">
+
+	
+});
+
+	
+</script>
 
 
 

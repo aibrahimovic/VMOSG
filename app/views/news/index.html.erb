@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Osnovne informacije</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+<br><br>
+<br><br><br><br>
+<div class="container">
+
+    <h3>Vijesti</h3>
+    <div align="right">
+        <%= link_to 'Kreiraj novu vijest', new_news_path, class: "btn btn-info", style: 'color: white; width:300px;'%>
+    </div>
+    <br>
+    
+<br>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Naslov vijesti</th>
+      <th>Opis vijesti</th>
+      <th>File 1</th>
+      <th>File 2</th>
+      <th>File 3</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @news.each do |news| %>
+      <tr>
+        <td><%= news.name %></td>
+        <td><%= news.description %></td>
+        <td><%= news.file1_file_name %></td>
+        <td><%= news.file2_file_name %></td>
+        <td><%= news.file3_file_name %></td>
+        <td><%= link_to 'Izmjena', edit_news_path(news) %></td>
+        <td><%= link_to 'Brisanje', news, method: :delete, data: { confirm: 'Da li ste sigurni?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

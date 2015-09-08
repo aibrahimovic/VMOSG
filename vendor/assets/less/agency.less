@@ -1,4 +1,5 @@
-@import "variables.less";
+//@import "variables.less";
+@import "varijabl.less";
 @import "mixins.less";
 
 // Global Components
@@ -14,7 +15,7 @@ body {
 
 .text-primary {
 	color: @brand-primary;
-}
+}	
 
 p {
 	font-size: 14px;
@@ -308,6 +309,72 @@ section {
         z-index: 2;
     }
 }
+
+
+#news {
+    .news-item {
+        margin: 0 0 15px;
+        right: 0;
+        .news-link {
+            display: block;
+            position: relative;
+            max-width: 400px;
+            margin: 0 auto;
+            .news-hover {
+                background: fade(@brand-primary, 90%);
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                transition: all ease 0.5s;
+                -webkit-transition: all ease 0.5s;
+                -moz-transition: all ease 0.5s;
+                &:hover {
+                    opacity: 1;
+                }
+                .news-hover-content {
+                    position: absolute;
+                    width: 100%;
+                    height: 20px;
+                    font-size: 20px;
+                    text-align: center;
+                    top: 50%;
+                    margin-top: -12px;
+                    color: white;
+                    i {
+                        margin-top: -12px;
+                    }
+                    h3,
+                    h4 {
+                        margin: 0;
+                    }
+                }                
+            }            
+        }
+        .news-caption {
+        	max-width: 400px;
+        	margin: 0 auto;
+        	background-color: white;
+        	text-align: center;
+        	padding: 25px;
+        	h4 {
+        		text-transform: none;
+        		margin: 0;
+        	}
+        	p {
+        		.serif-font;
+        		font-style: italic;
+        		font-size: 16px;
+        		margin: 0;
+        	}
+        }
+    }
+    * {
+        z-index: 2;
+    }
+}
+
+
 
 @media(min-width:767px) {
     #portfolio {

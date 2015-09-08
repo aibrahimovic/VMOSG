@@ -13,11 +13,18 @@
 </head>
 <body>
 <br><br>
+<br><br><br><br>
 <div class="container">
-  <h2>Osnovne informacije </h2>
-  <p>Osnovne informacije o Vijeću Mladih Općine Stari Grad Sarajevo</p>   
+  <% @infos.each do |info| %>   
+
+  <h3>Osnovne informacije </h3>
+  <div align="right">
+        <%= link_to 'Izmjena osnovnih informacija', edit_info_path(info), class: "btn btn-info", style: 'color: white; width:300px;'%>
+    </div>
+
   <br>
-  <% @infos.each do |info| %>         
+  <br>
+        
   <table class="table table-striped">
     <thead>
       <tr>
@@ -41,14 +48,10 @@
 
     
   </table>
-  <%= link_to 'Izmjena osnovnih podataka', edit_info_path(info), class: "btn btn-default" %><br><br><br>
   
 
   <% end %>
   
-
-  <%= link_to 'Nazad na admin stranicu', admin_main_path,  class: "btn btn-default" %>
-  <%= link_to 'Nazad na web stranicu', statics_home_path,  class: "btn btn-default" %>
 
 
 </div>

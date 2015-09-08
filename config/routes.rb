@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
+  resources :news
   resources :infos
   resources :members
-  get 'admins/login'
-
-  get 'admins/logout'
-
   resources :projects
+
+  get 'admins/login'
+  get 'admins/logout'
   get 'statics/home'
   root 'statics#home'
   get 'admin', to: 'admins#login'
@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   resources :admins do
     post 'checkUser', on: :collection
   end
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
+  before_action :checkPriviledge
 
   # GET /members
   # GET /members.json
@@ -69,6 +70,6 @@ class MembersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-      params.require(:member).permit(:name, :description, :web, :phone, :image)
+      params.require(:member).permit(:name, :description, :web, :phone, :image, :avatar)
     end
 end

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Izmjena osnovnih informacija</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<!-- <= form_for @news, url: news_index_path, html: { multipart: true } do |f| %> -->
+<%= form_for(@news) do |f| %>
+
+  <% if @news.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@news.errors.count, "error") %> prohibited this news from being saved:</h2>
+
+      <ul>
+      <% @news.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="container">
+    
+    <form class="form-horizontal" role="form">
+      <br><br>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email"></label>
+          <div class="col-sm-10">
+            <p class="status" style="color:#A80000;"></p>
+          </div>
+        </div>
+      <br>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Naslov vijesti:</label>
+        <div class="col-sm-10">
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+      </div>
+      <br><br>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Opis vijesti:</label>
+        <div class="col-sm-10">
+          <%= f.text_area :description, class: 'form-control' %>
+        </div>
+      </div>
+      <br><br><br>
+      
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">File 1:</label>
+        <div class="col-sm-10">
+          <%= f.file_field :file1 %>
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">File 2:</label>
+        <div class="col-sm-10">
+          <%= f.file_field :file2 %>
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">File 3:</label>
+        <div class="col-sm-10">
+          <%= f.file_field :file3 %>
+        </div>
+      </div>
+
+
+      <br><br>
+      <div class="actions">
+        <div class="form-group">        
+          <div class="col-sm-offset-2 col-sm-10">
+            <!--<button type="submit" class="btn btn-default">Submit</button>-->
+            <input type="button" class="btn btn-info" value="SPREMI" id="button3" style="width:100px;">
+            <%= link_to 'ODUSTANI', news_index_path, class: "btn btn-default" %>
+          </div>
+        </div>
+      </div>
+
+      <%= f.text_field :id, class: 'form-control', style: 'visibility: hidden;'%>
+
+    </form>
+  </div>
+
+<% end %>
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+$('#news_name').focus(function() {
+  $('.status').html("");
+});
+
+$('#news_description').focus(function() {
+  $('.status').html("");
+});
+
+  
+$('#button3').click(function(e){
+  e.preventDefault();
+
+  var name = $('#news_name').val();
+  var description = $('#news_description').val();
+  var id = $('#news_id').val();
+  var jqId = '#edit_news_'+id;
+  
+  if (name != "" && description != "") {
+    if ($('#new_news').val() == "") $('#new_news').submit(); 
+    else $(jqId).submit(); 
+  }
+  else if (name == "") $('.status').html("Popunite polje naslov vijesti.");
+  else if (description == "") $('.status').html("Popunite polje opis vijesti.");
+});
+
+
+
+</script>

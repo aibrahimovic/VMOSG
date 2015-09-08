@@ -49,4 +49,5 @@ group :development do
 end
 
 gem 'therubyracer'
-gem 'paperclip-googledrive'
+gem "paperclip", "~> 4.3"
+

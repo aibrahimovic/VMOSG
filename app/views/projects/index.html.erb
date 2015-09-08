@@ -12,9 +12,14 @@
 </head>
 <body>
 <br><br>
+<br><br><br><br>
 <div class="container">
-  <h2>Informacije o projektima</h2>
-<br>
+  <h3>Projekti</h3>
+    <div align="right">
+        <%= link_to 'Kreiraj novi projekat', new_project_path, class: "btn btn-info", style: 'color: white; width:300px;'%>
+    </div>
+<br><br>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -32,9 +37,13 @@
       <tr>
         <td><%= project.name %></td>
         <td><%= project.description %></td>
-        <td><%= project.start %></td>
-        <td><%= project.end %></td>
-        <td><%= project.image %></td>
+        <td><%= project.startMonth%>.<%= project.start %>.</td>
+        <td><%= project.endMonth%>.<%= project.end %></td>
+        <% if !project.avatar.nil? %>
+          <td><%= image_tag project.avatar.url(:thumb) %></td>
+        <% else %>
+          <td></td>
+        <% end %> 
         <td><%= link_to 'Izmjena', edit_project_path(project) %></td>
         <td><%= link_to 'Brisanje', project, method: :delete, data: { confirm: 'Da li ste sigurni?' } %></td>
       </tr>
@@ -42,8 +51,5 @@
   </tbody>
 </table>
 
-<%= link_to 'Kreiraj novi projekat', new_project_path, class: "btn btn-info", style: 'color: white;' %><br><br><br>
-<%= link_to 'Nazad na admin stranicu', admin_main_path, class: "btn btn-default" %>
-<%= link_to 'Nazad na web stranicu', statics_home_path, class: "btn btn-default" %><br><br>
 
 

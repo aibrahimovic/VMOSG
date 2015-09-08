@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903114023) do
+ActiveRecord::Schema.define(version: 20150906153003) do
 
   create_table "infos", force: :cascade do |t|
     t.string   "name"
@@ -28,9 +28,31 @@ ActiveRecord::Schema.define(version: 20150903114023) do
     t.string   "description"
     t.string   "web"
     t.string   "phone"
-    t.string   "image"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+  end
+
+  create_table "news", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "file1_file_name"
+    t.string   "file1_content_type"
+    t.integer  "file1_file_size"
+    t.datetime "file1_updated_at"
+    t.string   "file2_file_name"
+    t.string   "file2_content_type"
+    t.integer  "file2_file_size"
+    t.datetime "file2_updated_at"
+    t.string   "file3_file_name"
+    t.string   "file3_content_type"
+    t.integer  "file3_file_size"
+    t.datetime "file3_updated_at"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -39,8 +61,14 @@ ActiveRecord::Schema.define(version: 20150903114023) do
     t.string   "start"
     t.string   "end"
     t.string   "image"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "startMonth"
+    t.string   "endMonth"
   end
 
   create_table "users", force: :cascade do |t|

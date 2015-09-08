@@ -1,13 +1,9 @@
 class AdminsController < ApplicationController
-  
-
 
   def login
   end
 
   def main
-
-
   end
 
   def checkUser 
@@ -19,6 +15,7 @@ class AdminsController < ApplicationController
   	if !u.nil? && u.username == username
   		if u.password == password
   			status = 'OK'
+        session[:admin_id] = u.id
   		else 
   			status = 'Pogresan password'
   		end
@@ -29,7 +26,7 @@ class AdminsController < ApplicationController
   	if status != 'OK'
   		render json: { status: status }
   	else
-	  	render js: %(window.location.pathname='#{admin_main_path}')
+	  	render js: %(window.location.pathname='#{infos_path}')
 	end
   end
 

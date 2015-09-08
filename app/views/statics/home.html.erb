@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,7 +45,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Vijeće Mladih Općine Stari Grad</a>
+                <%= image_tag("logo8.jpeg") %></a>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                
+                <!--Vijeće Mladih Općine Stari Grad-->
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -56,16 +58,19 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#services">O nama</a>
+                        <a class="page-scroll" href="#news" style="padding-top:35px;">Vijesti</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#portfolio">Udruženja</a>
+                        <a class="page-scroll" href="#services" style="padding-top:35px;">O nama</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">Projekti</a>
+                        <a class="page-scroll" href="#portfolio" style="padding-top:35px;">Udruženja</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">Kontakt</a>
+                        <a class="page-scroll" href="#about" style="padding-top:35px;">Projekti</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact" style="padding-top:35px;">Kontakt</a>
                     </li>
                 </ul>
             </div>
@@ -74,13 +79,62 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <!-- Header -->
+    <!-- Header 
     <header>
         <div class="container"  style="padding-bottom: 270px;">
-        	<%= image_tag("naslovna.jpg") %>
+        	
             
         </div>
-    </header>
+    </header> -->
+
+    <!-- Portfolio Grid Section -->
+    <section id="news" class="bg-light-gray"> <!--  style="background-image: url(/assets/pluto2.jpg);" -->
+        <div class="container">
+        <br><br>
+
+            
+            <div class="row">
+            <% @news.each do |one| %>
+                <div class="col-md-4 col-sm-6 news-item">
+                    <a href="#portfolioModal1" class="news-link" data-toggle="modal">
+                        <div class="news-hover">
+                            <div class="news-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="news-caption"> <!-- style="background-color:#FFFACD;" -->
+                        <h4><%=one.name%></h4><br>
+                        <p class="text-muted"><%=one.description%></p>
+                        <br>
+                        <div align="left">
+                        <br>
+                        <% if one.file1.exists? || one.file2.exists? || one.file3.exists? %>
+                            <span id="document_<%=one.id%>" class="documents" style="font-size:12px; padding-bottom:10px;"><i><span style="font-size:20px;">+</span> Dokumenti: </i></span>
+
+                        <div class="news_files" id="news_files_<%=one.id%>">
+                            <% if one.file1.exists? %>
+                                <%= link_to one.file1_file_name, one.file1.url(:original, false), class: "btn btn-default"%><br>
+                            <% end %>
+                            
+                            <% if one.file2.exists? %>
+                                <%= link_to one.file2_file_name, one.file2.url(:original, false), class: "btn btn-default"%><br>
+                            <% end %>
+                        
+                            <% if one.file3.exists? %>
+                                <%= link_to one.file3_file_name, one.file3.url(:original, false), class: "btn btn-default"%><br>
+                            <% end %>
+                        </div>
+                        
+                        <% end %>
+                        </div>
+                        
+                    </div>
+                </div>
+               <% end %>
+            </div>
+        </div>
+    </section>
 
     <!-- Services Section -->
     <section id="services">
@@ -134,14 +188,19 @@
             <div class="row">
             <% @members.each do |member| %>
                 <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-                        <div class="portfolio-hover">
+                    
+                        <!--<div class="portfolio-hover">
                             <div class="portfolio-hover-content">
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
+                        </div>-->
+                        <div align="center">
+                            <%= image_tag member.avatar.url(:medium), :class => "img-responsive", :alt => "", style: 'width: 360px;'%>
                         </div>
-                        <img src="img/portfolio/roundicons.png" class="img-responsive" alt="">
-                    </a>
+
+                            
+                        <!--<img src="img/portfolio/roundicons.png" class="img-responsive" alt="">-->
+                    
                     <div class="portfolio-caption">
                         <h4><%=member.name%></h4>
                         <p class="text-muted"><%=member.description%></p>
@@ -173,7 +232,8 @@
 						<% @parni = @projects[index+1] %>
 						
                         <li>
-                            <div class="timeline-image">
+                            <div class="timeline-image" style="background-color:#02579c;">
+                                <%= image_tag @neparni.avatar.url(:big), class: "img-circle img-responsive" %>
                                 <img class="img-circle img-responsive" src="/assets/<%=@neparni.image%>" alt="">
                             </div>
 
@@ -190,7 +250,8 @@
 
                         <% if !@parni.nil? %>
                         <li class="timeline-inverted">
-                            <div class="timeline-image">
+                            <div class="timeline-image" style="background-color:#02579c;">
+                            <%= image_tag @parni.avatar.url(:big), class: "img-circle img-responsive" %>
                                 <img class="img-circle img-responsive" src="/assets/<%=@parni.image%>" alt="">
                             </div>
 
@@ -209,7 +270,7 @@
 
                         <% end %> 
                         <li class="timeline-inverted">
-                            <div class="timeline-image">
+                            <div class="timeline-image" style="background-color:#02579c;">
                                 <h4>Nastavit 
                                     <br>će
                                     <br>se!</h4>
@@ -256,8 +317,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Contact Us</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h2 class="section-heading">Kontaktirajte nas</h2>
+                    <h3 class="section-subheading text-muted"><%= @main.name %></h3>
                 </div>
             </div>
             <div class="row">
@@ -266,28 +327,28 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name.">
+                                    <input type="text" class="form-control" placeholder="Vaše ime *" id="name" required data-validation-required-message="Molimo unesite Vaše ime.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
+                                    <input type="email" class="form-control" placeholder="Vaš email *" id="email" required data-validation-required-message="Molimo unesite Vašu email adresu.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="tel" class="form-control" placeholder="Your Phone *" id="phone" required data-validation-required-message="Please enter your phone number.">
+                                    <input type="tel" class="form-control" placeholder="Vaš telefon *" id="phone" required data-validation-required-message="Molimo unesite Vaš broj telefona.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <textarea class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                    <textarea class="form-control" placeholder="Vaša poruka *" id="message" required data-validation-required-message="Molimo unesite Vašu poruku."></textarea>
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
                             <div class="col-lg-12 text-center">
                                 <div id="success"></div>
-                                <button type="submit" class="btn btn-xl">Send Message</button>
+                                <button type="submit" class="btn btn-info" style="width: 300px; background-color:#02579c;">POŠALJI PORUKU</button>
                             </div>
                         </div>
                     </form>
@@ -295,16 +356,16 @@
             </div>
         </div>
     </section>
-
+<!--
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <span class="copyright">Copyright &copy; Your Website 2014</span>
+                    <span class="copyright">Copyright &copy; VMOSG </span>
                 </div>
                 <div class="col-md-4">
                     <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        <li><a href="#"><i class="fa fa-twitter" style="background-color:#02579c;"></i></a>
                         </li>
                         <li><a href="#"><i class="fa fa-facebook"></i></a>
                         </li>
@@ -313,17 +374,12 @@
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <ul class="list-inline quicklinks">
-                        <li><a href="#">Privacy Policy</a>
-                        </li>
-                        <li><a href="#">Terms of Use</a>
-                        </li>
-                    </ul>
+                    
                 </div>
             </div>
         </div>
     </footer>
-
+-->
     <!-- Portfolio Modals -->
     <!-- Use the modals below to showcase details about your portfolio projects! -->
 
@@ -514,4 +570,39 @@
 
 </body>
 
+
 </html>
+
+
+<script type="text/javascript">
+
+    $('.documents').ready(function(){
+        $('.news_files').hide();
+    });
+
+
+    $('.documents').click(function() { 
+        var id = $(this).attr('id');
+        id = id.replace("document_", "");
+
+        var str = '#news_files_'+id;
+        if ($(str).is(":visible")) $(str).hide();
+        else $(str).show();
+
+    });
+
+
+
+    /*$("#document_6").click(function(){
+        alert("The paragraph was clicked.");
+    });*/
+
+    $(document).ready(function() {
+
+        $(document).on("click",".appDetails", function () {
+           var clickedBtnID = $(this).attr('id');
+           alert('you clicked on button #' + clickedBtnID);
+        });
+    });
+
+</script>

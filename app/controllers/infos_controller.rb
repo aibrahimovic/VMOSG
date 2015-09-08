@@ -1,5 +1,6 @@
 class InfosController < ApplicationController
   before_action :set_info, only: [:show, :edit, :update, :destroy]
+  before_action :checkPriviledge
 
   # GET /infos
   # GET /infos.json
